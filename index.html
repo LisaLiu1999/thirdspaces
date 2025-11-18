@@ -12,24 +12,24 @@
     <style>
         /* --- 🎨 Color System --- */
         :root {
-            --sky-top: #E3F2FD;
+        --sky-top: #def0fc;
             --sky-bottom: #FFFBF5;
             --text-main: #4A6655;       
-            --text-light: #7C9E8E;  
-            --grass-tag-bg: #BCEAD5; 
-            --grass-tag-text: #3D7A5D; 
-            --button-color: #FF9F85;    
+            --text-light: #4A6655;  
+            --grass-tag-bg: #4A6655; 
+            --grass-tag-text: #f4fefa; 
+            --button-color: #fb9579;    
             --button-hover: #FF8A6B;
             --button-shadow: #E07C60;
             
             --card-bg: #FFFFFF; 
-            --radius-card: 30px; /* 卡片圓角 */
+            --radius-card: 30px; 
             --radius-btn: 60px;
 
-            --grass-wave-back-most: #C8E6C9; 
+            --grass-wave-back-most: #92c793; 
             --grass-wave-back: #A8E6CF;      
-            --grass-wave-front: #88D498;     
-            --grass-bottom: #56AB6C;         
+            --grass-wave-front: #608d69;     
+            --grass-bottom: #5a946a;         
 
             --flower-petal: #FFFFFF;
             --flower-center: #FFDD71;
@@ -87,11 +87,11 @@
         }
 
         .logo-img {
-            height: 70px; 
+            height: 120px; 
             display: block;
             transition: transform 0.3s ease;
             animation: logoBounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
-                       logoSway 4s ease-in-out infinite alternate; /* 加入擺動 */
+                       logoSway 4s ease-in-out infinite alternate; 
         }
         @keyframes logoBounceIn {
             0% { transform: scale(0); opacity: 0; }
@@ -128,7 +128,7 @@
             align-items: center;
         }
 
-        /* 吉祥物容器 - 調整位置到 H1 上方 */
+        /* 吉祥物容器 */
         .mascot-container {
             position: relative;
             margin-top: 20px;
@@ -138,7 +138,6 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            order: -1; /* 讓吉祥物在 Flex 容器中排在第一個 */
         }
         .blob-bg {
             position: absolute;
@@ -181,7 +180,6 @@
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
-            order: 0; /* 確保標題在吉祥物下方 */
         }
         .hero h1 .grass-word {
             background-color: var(--grass-tag-bg);
@@ -200,7 +198,6 @@
             max-width: 520px;
             margin: 0 auto 40px auto;
             font-weight: 500;
-            order: 1;
         }
 
         .cta-button {
@@ -214,7 +211,6 @@
             font-weight: 700;
             box-shadow: 0 8px 0 var(--button-shadow);
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            order: 2;
         }
         .cta-button:hover {
             background-color: var(--button-hover);
@@ -226,10 +222,10 @@
             box-shadow: 0 2px 0 var(--button-shadow);
         }
 
-        /* --- Features Grid (Rich Cards) --- */
+        /* --- Features Grid --- */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 預設 3 欄 */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 30px;
             padding: 60px 20px;
             max-width: 1100px;
@@ -248,7 +244,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            text-align: center; /* 置中 */
+            text-align: center;
             border: 2px solid #F2F7F4;
         }
 
@@ -267,55 +263,33 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px auto;
-            color: #5FB07A;
+            color: #5FB07A; /* 調整 SVG 顏色，讓它能更好地融入 */
             box-shadow: 0 4px 8px rgba(0,0,0,0.03);
         }
-        .card-icon svg { width: 40px; height: 40px; fill: currentColor; }
-        
+        .card-icon svg { 
+            width: 40px; 
+            height: 40px; 
+            /* 讓新的 SVG 使用 stroke 而不是 fill */
+            fill: none; 
+            stroke: currentColor; 
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         .feature-item h3 { font-size: 1.5rem; margin: 0 0 12px 0; color: var(--text-main); font-weight: 700; }
         .feature-item p { color: var(--text-light); margin: 0; font-size: 1.1rem; font-weight: 500; }
 
         /* --- 波浪草地區塊 --- */
-        .prototype-wrapper {
-            margin-top: 80px;
-            position: relative;
-        }
-
-        .waves-container {
-            position: absolute;
-            top: -120px; 
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            line-height: 0;
-            z-index: 5; 
-            pointer-events: none; 
-        }
-
-        .wave-svg {
-            display: block;
-            width: 200%;
-            height: 100%;
-            position: absolute;
-            bottom: 0;
-            animation: wave-move 10s linear infinite;
-        }
-
+        .prototype-wrapper { margin-top: 80px; position: relative; }
+        .waves-container { position: absolute; top: -120px; width: 100%; height: 250px; overflow: hidden; line-height: 0; z-index: 5; pointer-events: none; }
+        .wave-svg { display: block; width: 200%; height: 100%; position: absolute; bottom: 0; animation: wave-move 10s linear infinite; }
         .wave-back-most { fill: var(--grass-wave-back-most); opacity: 0.7; animation-duration: 25s; z-index: 0; bottom: 20px; }
         .wave-back { fill: var(--grass-wave-back); opacity: 0.8; animation-duration: 20s; z-index: 1; bottom: 10px; }
         .wave-front { fill: var(--grass-wave-front); animation-duration: 15s; z-index: 2; bottom: -2px; }
-
         @keyframes wave-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .flowers-container {
-            position: absolute;
-            top: -120px; 
-            width: 100%;
-            height: 250px;
-            z-index: 10; 
-            pointer-events: none;
-        }
-
+        .flowers-container { position: absolute; top: -120px; width: 100%; height: 250px; z-index: 10; pointer-events: none; }
         .flower { position: absolute; transform-origin: bottom center; animation: flower-breath 4s ease-in-out infinite alternate; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); }
         .flower-petal { fill: var(--flower-petal); }
         .flower-center { fill: var(--flower-center); }
@@ -332,14 +306,7 @@
 
         .prototype-content h2 { font-size: 3rem; margin-bottom: 20px; text-shadow: 0 3px 0 rgba(61, 122, 93, 0.2); position: relative; z-index: 11; }
         .prototype-content p { font-size: 1.2rem; opacity: 0.95; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 500; position: relative; z-index: 11; }
-
-        .white-btn {
-            background-color: #FFFFFF;
-            color: var(--grass-bottom);
-            box-shadow: 0 6px 0 #D4EAD9;
-            position: relative;
-            z-index: 11; 
-        }
+        .white-btn { background-color: #FFFFFF; color: var(--grass-bottom); box-shadow: 0 6px 0 #D4EAD9; position: relative; z-index: 11; }
         .white-btn:hover { background-color: #F9FFF9; box-shadow: 0 10px 0 #D4EAD9; transform: translateY(-4px); }
 
         footer {
@@ -359,20 +326,18 @@
         /* Tablet (Max 1024px) */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 4.5rem; }
-            .features-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-            }
-            .feature-item:last-child { grid-column: span 2; max-width: 600px; margin: 0 auto; } /* 第三張卡片置中 */
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-item:last-child { grid-column: span 2; max-width: 600px; margin: 0 auto; } 
         }
 
         /* Mobile (Max 768px) */
         @media (max-width: 768px) {
             nav { padding: 20px; }
-            .logo-img { height: 50px; }
+            .logo-img { height: 80px; animation: logoSway 4s ease-in-out infinite alternate; } 
             .nav-btn { padding: 8px 16px; font-size: 0.9rem; }
 
             /* Hero Section */
-            .hero { padding-top: 40px; }
+            .hero { padding-top: 20px; }
             .hero h1 { 
                 font-size: 3.2rem; 
                 line-height: 1.2;
@@ -381,10 +346,10 @@
             }
             .hero h1 .grass-word { margin-top: 5px; }
 
-            /* Mascot */
-            .mascot-container { height: 280px; margin-top: 10px; margin-bottom: 0; }
-            .blob-bg { width: 320px; height: 320px; } 
-            .mascot-img { width: 250px; }
+            /* Mascot (更小一點，推到 H1 上方) */
+            .mascot-container { height: 200px; margin-top: 10px; margin-bottom: 0; }
+            .blob-bg { width: 250px; height: 250px; bottom: -20px; } 
+            .mascot-img { width: 200px; }
 
             /* Features - 強制單欄 */
             .features-grid { 
@@ -398,17 +363,16 @@
             }
             
             /* Footer / Wave Section */
-            .prototype-wrapper { margin-top: 60px; }
-            .waves-container { height: 120px; top: -60px; }
-            .flowers-container { height: 120px; top: -60px; }
-            .prototype-content { padding-top: 80px; }
-            .prototype-content h2 { font-size: 2.2rem; }
+            .prototype-wrapper { margin-top: 40px; }
+            .waves-container { height: 100px; top: -50px; }
+            .flowers-container { height: 100px; top: -50px; }
+            .prototype-content { padding-top: 60px; }
+            .prototype-content h2 { font-size: 2rem; }
             
-            /* Decorations */
+            /* Decorations - 隱藏大部分 */
             .c1, .c2, .c3 { opacity: 0.3; }
-            .flower:nth-child(2), .flower:nth-child(3) { display: none; }
-            .flower:nth-child(1) { left: 5%; transform: scale(0.6); }
-            .flower:nth-child(4) { right: 5%; transform: scale(0.6); }
+            .flower:nth-child(2), .flower:nth-child(3), .flower:nth-child(4) { display: none; }
+            .flower:nth-child(1) { left: 50%; transform: translateX(-50%) scale(0.7); bottom: 10px; }
         }
     </style>
 </head>
@@ -448,7 +412,11 @@
         
         <div class="feature-item">
             <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                <!-- 可愛的小房子圖示 --><svg viewBox="0 0 24 24">
+                    <path d="M12 2L3 9h2v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9h2L12 2zM9 20v-6h6v6h-6z"/>
+                    <path d="M12 5.69l5 4V19h-3v-6H9v6H6V9.69l5-4z" fill="var(--text-main)" stroke="none"/>
+                    <circle cx="15" cy="8" r="1.5" fill="var(--flower-center)" stroke="none"/>
+                </svg>
             </div>
             <h3>Cozy Ambience</h3>
             <p>Find the perfect vibe. Quiet corners for reading, or lively spots for chatting with friends.</p>
@@ -456,7 +424,10 @@
 
         <div class="feature-item">
             <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <!-- 可愛帶放大鏡的星星圖示 --><svg viewBox="0 0 24 24">
+                    <path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 5.82L15.36 7l-2.06 3.32.79 3.86-3.08-2.61L8.69 16l-.28-3.69L5.34 10l3.08-2.61-.79-3.86L12 5.82z" fill="var(--flower-center)" stroke="none"/>
+                </svg>
             </div>
             <h3>Hidden Gems</h3>
             <p>Discover secret cafes and parks that aren't on the map.</p>
@@ -464,7 +435,11 @@
 
         <div class="feature-item">
             <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34 5.71 20.57 6.93 18.94 9 16c2.11-2.99 4.31-3.79 7-2 2.69 1.79 6 2 6-4 0-4-3-8-5-2z"/></svg>
+                <!-- 可愛的小葉子圖示 --><svg viewBox="0 0 24 24">
+                    <path d="M17.5 12.5a4 4 0 0 0-7 0c0 1.5 1 3 2.5 4.5l.5.5.5-.5c1.5-1.5 2.5-3 2.5-4.5zM12 22s-8-4.5-8-11.8C4 4.5 7.5 1 12 1s8 3.5 8 9.2c0 7.3-8 11.8-8 11.8z" fill="var(--grass-bottom)" stroke="none"/>
+                    <path d="M12 22s-8-4.5-8-11.8C4 4.5 7.5 1 12 1s8 3.5 8 9.2c0 7.3-8 11.8-8 11.8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2v20M5.5 8h13M4.5 15h15" stroke="var(--grass-tag-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
             <h3>Digital Detox</h3>
             <p>Put the phone down. Touch grass. Breathe fresh air.</p>
@@ -484,13 +459,7 @@
             <div class="flower" style="left: 10%; bottom: 60px; transform: scale(0.8);">
                 <svg width="40" height="40" viewBox="0 0 40 40">
                     <circle cx="20" cy="20" r="8" class="flower-center"/>
-                    <g class="flower-petal">
-                        <ellipse cx="20" cy="8" rx="5" ry="8"/>
-                        <ellipse cx="20" cy="32" rx="5" ry="8"/>
-                        <ellipse cx="8" cy="20" rx="8" ry="5"/>
-                        <ellipse cx="32" cy="20" rx="8" ry="5"/>
-                        <ellipse cx="12" cy="12" rx="6" ry="6" transform="rotate(-45 20 20)"/>
-                        <ellipse cx="28" cy="28" rx="6" ry="6" transform="rotate(-45 20 20)"/><ellipse cx="12" cy="28" rx="6" ry="6" transform="rotate(45 20 20)"/><ellipse cx="28" cy="12" rx="6" ry="6" transform="rotate(45 20 20)"/></g>
+                    <g class="flower-petal"><ellipse cx="20" cy="8" rx="5" ry="8"/><ellipse cx="20" cy="32" rx="5" ry="8"/><ellipse cx="8" cy="20" rx="8" ry="5"/><ellipse cx="32" cy="20" rx="8" ry="5"/><ellipse cx="12" cy="12" rx="6" ry="6" transform="rotate(-45 20 20)"/><ellipse cx="28" cy="28" rx="6" ry="6" transform="rotate(-45 20 20)"/><ellipse cx="12" cy="28" rx="6" ry="6" transform="rotate(45 20 20)"/><ellipse cx="28" cy="12" rx="6" ry="6" transform="rotate(45 20 20)"/></g>
                 </svg>
             </div>
             <div class="flower" style="left: 25%; bottom: 40px; transform: scale(1);">
