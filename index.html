@@ -37,12 +37,12 @@
 
         * { box-sizing: border-box; }
 
-        /* 1. 設定基本背景 (修正括號問題) */
+        /* 1. 設定基本背景 */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%; /* 確保高度撐滿 */
+            height: 100%;
             font-family: 'Fredoka', sans-serif; 
             color: var(--text-main);
             background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 50%, var(--sky-bottom) 100%);
@@ -51,12 +51,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 2. 這是新的包覆層設定 (獨立出來寫) */
+        /* 2. 包覆層設定 */
         .site-wrapper {
             width: 100%;
-            max-width: 100vw;      /* 限制最大寬度 */
-            overflow-x: hidden;    /* 🔪 在這裡動刀裁切，讓手機不左右滑 */
-            position: relative;    /* 讓裡面的雲朵以這個框框為基準 */
+            max-width: 100vw;      
+            overflow-x: hidden;    /* 裁切多餘部分 */
+            position: relative;    
             min-height: 100vh;
         }
 
@@ -65,7 +65,7 @@
             position: absolute;
             background: #FFFFFF;
             border-radius: 50px;
-            z-index: 0; /* ☁️ 改為 0，確保它在最底層但看得到 */
+            z-index: 0; 
             opacity: 0.9; 
             box-shadow: 0 10px 25px rgba(176, 224, 230, 0.4);
             animation: floatCloud 35s linear infinite;
@@ -83,7 +83,7 @@
 
         /* --- 導覽列 --- */
         nav {
-            position: relative; /* 確保在雲朵上面 */
+            position: relative;
             z-index: 10;
             display: flex;
             justify-content: space-between;
@@ -138,7 +138,7 @@
             text-align: center;
             padding: 60px 20px 20px 20px;
             position: relative;
-            z-index: 5; /* 確保在雲朵上面 */
+            z-index: 5;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -197,7 +197,7 @@
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
-            max-width: 100%; /* 確保不超出 */
+            max-width: 100%; 
         }
         .hero h1 .grass-word {
             background-color: var(--grass-tag-bg);
@@ -216,7 +216,7 @@
             max-width: 520px;
             margin: 0 auto 40px auto;
             font-weight: 500;
-            padding: 0 10px; /* 防止文字貼邊 */
+            padding: 0 10px; 
         }
 
         .cta-button {
@@ -250,7 +250,7 @@
             max-width: 1100px;
             margin: 0 auto;
             position: relative;
-            z-index: 5; /* 確保在雲朵上面 */
+            z-index: 5; 
         }
 
         .feature-item {
@@ -366,12 +366,12 @@
             }
             .hero h1 .grass-word { margin-top: 5px; }
 
-            /* Mascot (更小一點，推到 H1 上方) */
+            /* Mascot */
             .mascot-container { height: 200px; margin-top: 10px; margin-bottom: 0; }
             .blob-bg { width: 250px; height: 250px; bottom: -20px; } 
             .mascot-img { width: 200px; }
 
-            /* Features - 強制單欄 */
+            /* Features */
             .features-grid { 
                 grid-template-columns: 1fr; 
                 padding: 40px 20px; 
@@ -389,10 +389,19 @@
             .prototype-content { padding-top: 60px; }
             .prototype-content h2 { font-size: 2rem; }
             
-            /* Decorations - 隱藏大部分 */
+            /* Decorations */
             .c1, .c2, .c3 { opacity: 0.3; }
-            .flower:nth-child(2), .flower:nth-child(3), .flower:nth-child(4) { display: none; }
-            .flower:nth-child(1) { left: 50%; transform: translateX(-50%) scale(0.7); bottom: 10px; }
+            
+            /* 👇 修正重點：把四朵花都找回來，並調整位置 */
+            .flower:nth-child(2), .flower:nth-child(3), .flower:nth-child(4) { 
+                display: block; /* 讓它們顯示！ */
+            }
+            
+            /* 手機版花的排列：比較小顆，平均分散在波浪上 */
+            .flower:nth-child(1) { left: 5%;  bottom: 20px; transform: scale(0.6); }
+            .flower:nth-child(2) { left: 30%; bottom: 10px; transform: scale(0.5); }
+            .flower:nth-child(3) { right: 30%; bottom: 15px; transform: scale(0.55); }
+            .flower:nth-child(4) { right: 5%; bottom: 25px; transform: scale(0.6); }
         }
     </style>
 </head>
@@ -431,7 +440,6 @@
         </section>
 
         <section class="features-grid">
-            
             <div class="feature-item">
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24">
@@ -466,11 +474,9 @@
                 <h3>Digital Detox</h3>
                 <p>Put the phone down. Touch grass. Breathe fresh air.</p>
             </div>
-
         </section>
 
         <div class="prototype-wrapper">
-            
             <div class="waves-container">
                 <svg class="wave-svg wave-back-most" viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0,224L60,208C120,192,240,160,360,160C480,160,600,192,720,192C840,192,960,160,1080,154.7C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
                 <svg class="wave-svg wave-back" viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0,192L60,197.3C120,203,240,213,360,229.3C480,245,600,267,720,250.7C840,235,960,181,1080,181.3C1200,181,1320,235,1380,234.7L1440,235L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
@@ -517,5 +523,7 @@
             <p>&copy; 2025 Third Spaces. Made with love :) </p>
         </footer>
 
-    </div> </body>
+    </div>
+
+</body>
 </html>
