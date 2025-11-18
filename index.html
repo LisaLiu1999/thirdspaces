@@ -12,27 +12,27 @@
     <style>
         /* --- 🎨 Color System --- */
         :root {
-            --sky-top: #d3e7f6;
-            --sky-bottom: #fff9f7;
-            --text-main: #34614b;       
-            --text-light: #41744e;  
-            --grass-tag-bg: #34614b; 
-            --grass-tag-text: #f4f5f5; 
-            --button-color: #fb9d85;    
-            --button-hover: #f67f5f;
+            --sky-top: #E3F2FD;
+            --sky-bottom: #FFFBF5;
+            --text-main: #4A6655;       
+            --text-light: #7C9E8E;  
+            --grass-tag-bg: #BCEAD5; 
+            --grass-tag-text: #3D7A5D; 
+            --button-color: #FF9F85;    
+            --button-hover: #FF8A6B;
             --button-shadow: #E07C60;
             
             --card-bg: #FFFFFF; 
-            --radius-card: 30px; 
+            --radius-card: 30px; /* 卡片圓角 */
             --radius-btn: 60px;
 
             --grass-wave-back-most: #C8E6C9; 
             --grass-wave-back: #A8E6CF;      
-            --grass-wave-front: #8db996;     
-            --grass-bottom: #649772;         
+            --grass-wave-front: #88D498;     
+            --grass-bottom: #56AB6C;         
 
             --flower-petal: #FFFFFF;
-            --flower-center: #ffd738;
+            --flower-center: #FFDD71;
         }
 
         * { box-sizing: border-box; }
@@ -53,31 +53,21 @@
             position: absolute;
             background: #FFFFFF;
             border-radius: 50px;
-            z-index: -1; 
+            z-index: -1;
+            opacity: 0.9; 
             box-shadow: 0 10px 25px rgba(176, 224, 230, 0.4);
-            animation: floatCloud 20s linear infinite;
+            animation: floatCloud 35s linear infinite;
         }
-        .cloud::after, .cloud::before {
-            content: '';
-            position: absolute;
-            background: inherit;
-            border-radius: 50%;
-        }
-        /* Desktop Cloud Positions */
+        .cloud::after, .cloud::before { content: ''; position: absolute; background: inherit; border-radius: 50%; }
         .c1 { top: 80px; left: -120px; width: 140px; height: 45px; animation-duration: 45s; }
         .c1::after { width: 60px; height: 60px; top: -30px; left: 25px; }
         .c1::before { width: 50px; height: 50px; top: -20px; left: 70px; }
-
         .c2 { top: 250px; right: -150px; width: 110px; height: 40px; animation-duration: 38s; animation-direction: reverse; }
         .c2::after { width: 50px; height: 50px; top: -25px; left: 15px; }
-
         .c3 { top: 150px; left: 20%; width: 80px; height: 30px; opacity: 0.7; animation-duration: 60s; animation-delay: -20s; }
         .c3::after { width: 40px; height: 40px; top: -20px; left: 10px; }
 
-        @keyframes floatCloud {
-            0% { transform: translateX(-20vw); }
-            100% { transform: translateX(120vw); }
-        }
+        @keyframes floatCloud { 0% { transform: translateX(-20vw); } 100% { transform: translateX(120vw); } }
 
         /* --- 導覽列 --- */
         nav {
@@ -89,11 +79,19 @@
             margin: 0 auto;
         }
 
+        /* Logo 擺動動畫 */
+        @keyframes logoSway {
+            0% { transform: rotate(-3deg) scale(1); }
+            50% { transform: rotate(3deg) scale(1.05); }
+            100% { transform: rotate(-3deg) scale(1); }
+        }
+
         .logo-img {
             height: 70px; 
             display: block;
-            transition: transform 0.3s;
-            animation: logoBounceIn 0.8s forwards;
+            transition: transform 0.3s ease;
+            animation: logoBounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+                       logoSway 4s ease-in-out infinite alternate; /* 加入擺動 */
         }
         @keyframes logoBounceIn {
             0% { transform: scale(0); opacity: 0; }
@@ -129,68 +127,18 @@
             flex-direction: column;
             align-items: center;
         }
-        .hero h1 {
-            font-size: 5.5rem;
-            line-height: 1;
-            margin-bottom: 24px;
-            color: var(--text-main);
-            font-weight: 700;
-            letter-spacing: -2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap; /* 允許換行 */
-        }
-        .hero h1 .grass-word {
-            background-color: var(--grass-tag-bg);
-            color: var(--grass-tag-text);
-            padding: 8px 30px;
-            border-radius: 50px;
-            position: relative;
-            display: inline-block;
-            transform: rotate(3deg);
-            top: -5px;
-            box-shadow: 4px 4px 0px rgba(61, 122, 93, 0.15);
-        }
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            max-width: 520px;
-            margin: 0 auto 40px auto;
-            font-weight: 500;
-        }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--button-color);
-            color: white;
-            padding: 20px 55px;
-            border-radius: var(--radius-btn);
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 700;
-            box-shadow: 0 8px 0 var(--button-shadow);
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .cta-button:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 0 var(--button-shadow);
-        }
-        .cta-button:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 var(--button-shadow);
-        }
-
+        /* 吉祥物容器 - 調整位置到 H1 上方 */
         .mascot-container {
             position: relative;
-            margin-top: 70px;
+            margin-top: 20px;
+            margin-bottom: 20px; 
             height: 350px; 
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: flex-end;
+            order: -1; /* 讓吉祥物在 Flex 容器中排在第一個 */
         }
         .blob-bg {
             position: absolute;
@@ -220,6 +168,64 @@
             50% { transform: translateY(-15px) rotate(2deg); }
         }
 
+        /* 標題 (H1) */
+        .hero h1 {
+            font-size: 5.5rem;
+            line-height: 1;
+            margin-bottom: 24px;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: -2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            order: 0; /* 確保標題在吉祥物下方 */
+        }
+        .hero h1 .grass-word {
+            background-color: var(--grass-tag-bg);
+            color: var(--grass-tag-text);
+            padding: 8px 30px;
+            border-radius: 50px;
+            position: relative;
+            display: inline-block;
+            transform: rotate(3deg);
+            top: -5px;
+            box-shadow: 4px 4px 0px rgba(61, 122, 93, 0.15);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 520px;
+            margin: 0 auto 40px auto;
+            font-weight: 500;
+            order: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--button-color);
+            color: white;
+            padding: 20px 55px;
+            border-radius: var(--radius-btn);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 8px 0 var(--button-shadow);
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            order: 2;
+        }
+        .cta-button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 0 var(--button-shadow);
+        }
+        .cta-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 var(--button-shadow);
+        }
+
         /* --- Features Grid (Rich Cards) --- */
         .features-grid {
             display: grid;
@@ -233,6 +239,7 @@
         }
 
         .feature-item {
+            padding: 40px 30px;
             background-color: #FFFFFF; 
             border-radius: var(--radius-card); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.05);
@@ -241,69 +248,32 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            text-align: left;
-            border: 1px solid rgba(0,0,0,0.02);
+            text-align: center; /* 置中 */
+            border: 2px solid #F2F7F4;
         }
 
         .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--grass-tag-bg); 
         }
-
-        .card-image-placeholder {
-            height: 160px;
-            width: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .c-bg-1 { background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%); }
-        .c-bg-2 { background: linear-gradient(135deg, #F1F8E9 0%, #DCEDC8 100%); }
-        .c-bg-3 { background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); }
 
         .card-icon {
-            background: rgba(255,255,255,0.9);
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
+            background-color: #F2FCF5;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-main);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 0 auto 20px auto;
+            color: #5FB07A;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
         }
-        .card-icon svg { width: 30px; height: 30px; fill: var(--grass-bottom); }
-
-        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            color: #999;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+        .card-icon svg { width: 40px; height: 40px; fill: currentColor; }
         
-        .rating { color: #FFC107; letter-spacing: 0; }
-
-        .feature-item h3 { font-size: 1.5rem; margin: 0 0 10px 0; color: var(--text-main); font-weight: 700; }
-        .feature-item p { color: var(--text-light); margin: 0 0 20px 0; font-size: 1rem; line-height: 1.5; flex-grow: 1; }
-
-        .card-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .tag {
-            font-size: 0.8rem;
-            padding: 6px 12px;
-            border-radius: 20px;
-            background-color: #F5F5F5;
-            color: #666;
-            font-weight: 600;
-        }
-        .tag.highlight { background-color: #E8F5E9; color: #388E3C; }
+        .feature-item h3 { font-size: 1.5rem; margin: 0 0 12px 0; color: var(--text-main); font-weight: 700; }
+        .feature-item p { color: var(--text-light); margin: 0; font-size: 1.1rem; font-weight: 500; }
 
         /* --- 波浪草地區塊 --- */
         .prototype-wrapper {
@@ -335,10 +305,7 @@
         .wave-back { fill: var(--grass-wave-back); opacity: 0.8; animation-duration: 20s; z-index: 1; bottom: 10px; }
         .wave-front { fill: var(--grass-wave-front); animation-duration: 15s; z-index: 2; bottom: -2px; }
 
-        @keyframes wave-move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes wave-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .flowers-container {
             position: absolute;
@@ -349,19 +316,10 @@
             pointer-events: none;
         }
 
-        .flower {
-            position: absolute;
-            transform-origin: bottom center;
-            animation: flower-breath 4s ease-in-out infinite alternate;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); 
-        }
+        .flower { position: absolute; transform-origin: bottom center; animation: flower-breath 4s ease-in-out infinite alternate; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); }
         .flower-petal { fill: var(--flower-petal); }
         .flower-center { fill: var(--flower-center); }
-
-        @keyframes flower-breath {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-5px) rotate(5deg); }
-        }
+        @keyframes flower-breath { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-5px) rotate(5deg); } }
 
         .prototype-content {
             background: linear-gradient(180deg, var(--grass-wave-front) 0%, var(--grass-bottom) 100%);
@@ -382,11 +340,7 @@
             position: relative;
             z-index: 11; 
         }
-        .white-btn:hover {
-            background-color: #F9FFF9;
-            box-shadow: 0 10px 0 #D4EAD9;
-            transform: translateY(-4px);
-        }
+        .white-btn:hover { background-color: #F9FFF9; box-shadow: 0 10px 0 #D4EAD9; transform: translateY(-4px); }
 
         footer {
             background-color: var(--grass-bottom);
@@ -402,20 +356,19 @@
            📱 RESPONSIVE BREAKPOINTS 
            ========================================== */
 
-        /* --- Tablet (Max 1024px) --- */
+        /* Tablet (Max 1024px) */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 4.5rem; }
             .features-grid { 
-                grid-template-columns: repeat(2, 1fr); /* 變成 2 欄 */
+                grid-template-columns: repeat(2, 1fr); 
             }
-            /* 第三張卡片置中，佔滿 2 欄 */
-            .feature-item:last-child { grid-column: span 2; } 
+            .feature-item:last-child { grid-column: span 2; max-width: 600px; margin: 0 auto; } /* 第三張卡片置中 */
         }
 
-        /* --- Mobile (Max 768px) --- */
+        /* Mobile (Max 768px) */
         @media (max-width: 768px) {
             nav { padding: 20px; }
-            .logo-img { height: 90px; } /* Logo 縮小 */
+            .logo-img { height: 50px; }
             .nav-btn { padding: 8px 16px; font-size: 0.9rem; }
 
             /* Hero Section */
@@ -423,30 +376,27 @@
             .hero h1 { 
                 font-size: 3.2rem; 
                 line-height: 1.2;
-                flex-direction: column; /* 強制 Touch 和 Grass 換行 */
+                gap: 5px; 
+                flex-direction: column; 
             }
-            .hero h1 .grass-word { 
-                transform: rotate(-2deg); 
-                margin-top: 5px;
-            }
-            .hero p { font-size: 1.1rem; padding: 0 10px; }
-            
+            .hero h1 .grass-word { margin-top: 5px; }
+
             /* Mascot */
-            .mascot-container { height: 280px; margin-top: 50px; }
+            .mascot-container { height: 280px; margin-top: 10px; margin-bottom: 0; }
             .blob-bg { width: 320px; height: 320px; } 
             .mascot-img { width: 250px; }
 
-            /* Features (卡片) */
+            /* Features - 強制單欄 */
             .features-grid { 
-                grid-template-columns: 1fr; /* 變成 1 欄 */
-                padding: 40px 40px;
-                gap: 25px;
+                grid-template-columns: 1fr; 
+                padding: 40px 20px; 
+                gap: 20px;
             }
             .feature-item, .feature-item:last-child { 
-                grid-column: span 1; /* 確保所有卡片都只佔 1 欄 */
+                grid-column: span 1; 
+                max-width: 100%;
             }
-            .card-image-placeholder { height: 140px; }
-
+            
             /* Footer / Wave Section */
             .prototype-wrapper { margin-top: 60px; }
             .waves-container { height: 120px; top: -60px; }
@@ -454,9 +404,9 @@
             .prototype-content { padding-top: 80px; }
             .prototype-content h2 { font-size: 2.2rem; }
             
-            /* Hide complex decorations on mobile */
+            /* Decorations */
             .c1, .c2, .c3 { opacity: 0.3; }
-            .flower:nth-child(2), .flower:nth-child(3) { display: none; } /* 隱藏部分花朵 */
+            .flower:nth-child(2), .flower:nth-child(3) { display: none; }
             .flower:nth-child(1) { left: 5%; transform: scale(0.6); }
             .flower:nth-child(4) { right: 5%; transform: scale(0.6); }
         }
@@ -478,6 +428,11 @@
     </nav>
 
     <section class="hero">
+        <div class="mascot-container">
+            <div class="blob-bg"></div>
+            <img src="mascot.png" alt="Third Spaces Mascot" class="mascot-img">
+        </div>
+        
         <h1>
             <span>Touch</span> 
             <span class="grass-word">Grass.</span>
@@ -487,73 +442,32 @@
         <a href="YOUR_FIGMA_LINK_HERE" target="_blank" class="cta-button">
             Start Exploring
         </a>
-        
-        <div class="mascot-container">
-            <div class="blob-bg"></div>
-            <img src="mascot.png" alt="Third Spaces Mascot" class="mascot-img">
-        </div>
     </section>
 
     <section class="features-grid">
         
         <div class="feature-item">
-            <div class="card-image-placeholder c-bg-1">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                </div>
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             </div>
-            <div class="card-content">
-                <div class="card-meta">
-                    <span>AMBIENCE</span>
-                    <span class="rating">★★★★★</span>
-                </div>
-                <h3>Cozy Spaces</h3>
-                <p>Find the perfect vibe. Quiet corners for deep focus or lively spots for chatting.</p>
-                <div class="card-tags">
-                    <span class="tag highlight">Quiet</span>
-                    <span class="tag">Comfort</span>
-                </div>
-            </div>
+            <h3>Cozy Ambience</h3>
+            <p>Find the perfect vibe. Quiet corners for reading, or lively spots for chatting with friends.</p>
         </div>
 
         <div class="feature-item">
-            <div class="card-image-placeholder c-bg-2">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                </div>
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
             </div>
-            <div class="card-content">
-                <div class="card-meta">
-                    <span>DISCOVERY</span>
-                    <span class="rating">★★★★☆</span>
-                </div>
-                <h3>Hidden Gems</h3>
-                <p>Discover secret cafes, parks, and rooftops that aren't on the usual maps.</p>
-                <div class="card-tags">
-                    <span class="tag highlight">Nature</span>
-                    <span class="tag">Secret</span>
-                </div>
-            </div>
+            <h3>Hidden Gems</h3>
+            <p>Discover secret cafes and parks that aren't on the map.</p>
         </div>
 
         <div class="feature-item">
-            <div class="card-image-placeholder c-bg-3">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34 5.71 20.57 6.93 18.94 9 16c2.11-2.99 4.31-3.79 7-2 2.69 1.79 6 2 6-4 0-4-3-8-5-2z"/></svg>
-                </div>
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34 5.71 20.57 6.93 18.94 9 16c2.11-2.99 4.31-3.79 7-2 2.69 1.79 6 2 6-4 0-4-3-8-5-2z"/></svg>
             </div>
-            <div class="card-content">
-                <div class="card-meta">
-                    <span>WELLNESS</span>
-                    <span class="rating">★★★★★</span>
-                </div>
-                <h3>Digital Detox</h3>
-                <p>Put the phone down. Touch grass. Breathe fresh air. Just be present.</p>
-                <div class="card-tags">
-                    <span class="tag highlight">Offline</span>
-                    <span class="tag">Relax</span>
-                </div>
-            </div>
+            <h3>Digital Detox</h3>
+            <p>Put the phone down. Touch grass. Breathe fresh air.</p>
         </div>
 
     </section>
@@ -576,10 +490,7 @@
                         <ellipse cx="8" cy="20" rx="8" ry="5"/>
                         <ellipse cx="32" cy="20" rx="8" ry="5"/>
                         <ellipse cx="12" cy="12" rx="6" ry="6" transform="rotate(-45 20 20)"/>
-                        <ellipse cx="28" cy="28" rx="6" ry="6" transform="rotate(-45 20 20)"/>
-                        <ellipse cx="12" cy="28" rx="6" ry="6" transform="rotate(45 20 20)"/>
-                        <ellipse cx="28" cy="12" rx="6" ry="6" transform="rotate(45 20 20)"/>
-                    </g>
+                        <ellipse cx="28" cy="28" rx="6" ry="6" transform="rotate(-45 20 20)"/><ellipse cx="12" cy="28" rx="6" ry="6" transform="rotate(45 20 20)"/><ellipse cx="28" cy="12" rx="6" ry="6" transform="rotate(45 20 20)"/></g>
                 </svg>
             </div>
             <div class="flower" style="left: 25%; bottom: 40px; transform: scale(1);">
