@@ -60,25 +60,43 @@
             min-height: 100vh;
         }
 
-        /* --- ☁️ 雲朵 --- */
+        /* --- ☁️ 雲朵 (更新版：更清楚、更立體) --- */
         .cloud {
             position: absolute;
             background: #FFFFFF;
             border-radius: 50px;
             z-index: 0; 
-            opacity: 0.9; 
-            box-shadow: 0 10px 25px rgba(176, 224, 230, 0.4);
+            opacity: 0.9; /* ✨ 改成 0.95，讓雲朵更白、更清楚 */
+            /* 加強陰影，讓雲朵浮起來 */
+            box-shadow: 0 8px 15px rgba(61, 122, 93, 0.1); 
             animation: floatCloud 35s linear infinite;
         }
         .cloud::after, .cloud::before { content: ''; position: absolute; background: inherit; border-radius: 50%; }
-        .c1 { top: 80px; left: -120px; width: 140px; height: 45px; animation-duration: 45s; }
+        
+        /* 雲朵 1 (左上) */
+        .c1 { top: 60px; left: -120px; width: 140px; height: 45px; animation-duration: 45s; }
         .c1::after { width: 60px; height: 60px; top: -30px; left: 25px; }
         .c1::before { width: 50px; height: 50px; top: -20px; left: 70px; }
-        .c2 { top: 250px; right: -150px; width: 110px; height: 40px; animation-duration: 38s; animation-direction: reverse; }
+        
+        /* 雲朵 2 (右中) */
+        .c2 { top: 280px; right: -150px; width: 110px; height: 40px; animation-duration: 38s; animation-direction: reverse; }
         .c2::after { width: 50px; height: 50px; top: -25px; left: 15px; }
-        .c3 { top: 150px; left: 20%; width: 80px; height: 30px; opacity: 0.7; animation-duration: 60s; animation-delay: -20s; }
-        .c3::after { width: 40px; height: 40px; top: -20px; left: 10px; }
+        
+        /* 雲朵 3 (左中) */
+        .c3 { top: 160px; left: 10%; width: 90px; height: 35px; animation-duration: 60s; animation-delay: -10s; }
+        .c3::after { width: 45px; height: 45px; top: -25px; left: 15px; }
 
+        /* ✨ 新增雲朵 4 (右上高空) */
+        .c4 { top: 40px; right: 20%; width: 0px; height: 45px; animation-duration: 55s; animation-delay: -20s; z-index: -1;}
+        .c4::after { width: 35px; height: 35px; top: -28px; left: 20px; }
+        .c4::before { width: 40px; height: 40px; top: -15px; left: 60px; }
+
+        /* ✨ 新增雲朵 5 (中間超大雲) */
+        .c5 { top: 120px; left: 60%; width: 160px; height: 50px; animation-duration: 70s; animation-delay: -5s; opacity: 0.85; }
+        .c5::after { width: 50px; height: 50px; top: -35px; left: 30px; }
+        .c5::before { width: 60px; height: 60px; top: -25px; left: 80px; }
+
+      
         @keyframes floatCloud { 0% { transform: translateX(-20vw); } 100% { transform: translateX(120vw); } }
 
         /* --- 導覽列 --- */
@@ -389,19 +407,19 @@
             .prototype-content { padding-top: 60px; }
             .prototype-content h2 { font-size: 2rem; }
             
-            /* Decorations */
-            .c1, .c2, .c3 { opacity: 0.3; }
-            
-            /* 👇 修正重點：把四朵花都找回來，並調整位置 */
+            /* Decorations (Cloud & Flower Adjustments) */
             .flower:nth-child(2), .flower:nth-child(3), .flower:nth-child(4) { 
-                display: block; /* 讓它們顯示！ */
+                display: block; 
             }
             
-            /* 手機版花的排列：比較小顆，平均分散在波浪上 */
+            /* 手機版花的排列 */
             .flower:nth-child(1) { left: 5%;  bottom: 20px; transform: scale(0.6); }
             .flower:nth-child(2) { left: 30%; bottom: 10px; transform: scale(0.5); }
             .flower:nth-child(3) { right: 30%; bottom: 15px; transform: scale(0.55); }
             .flower:nth-child(4) { right: 5%; bottom: 25px; transform: scale(0.6); }
+
+            /* 手機版雲朵：稍微調淡一點點，避免太搶眼，但還是有6朵 */
+            .cloud { opacity: 0.8; }
         }
     </style>
 </head>
@@ -412,6 +430,9 @@
         <div class="cloud c1"></div>
         <div class="cloud c2"></div>
         <div class="cloud c3"></div>
+        <div class="cloud c4"></div>
+        <div class="cloud c5"></div>
+        <div class="cloud c6"></div>
 
         <nav>
             <a href="#">
